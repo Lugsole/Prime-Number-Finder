@@ -1,12 +1,14 @@
-// PrimFinder.cpp : Defines the entry point for the console application.
-//
+/*
+ * Created by: Lugsole
+ * What: This is a prime finding function
+ * When: 2017 - Curent
+ * Where: 
+ * Why: This was made for fun
+ */
 #include <iostream>
 #include <math.h>
 #include <fstream>
 #include <chrono>
-#include <ctime>
-#include <ratio>
-#include <bitset>
 #include <vector> 
 using namespace std;         // Including the C++ Standard Library.
 using namespace std::chrono; // Include chrono standard library
@@ -36,7 +38,7 @@ int main()
     /* Declare number as prime (change latter is not true) */
     bool is_prime = true;
     /* Set the largest number to try the square root  */
-    unsigned int max_try = sqrt(spot);
+    unsigned int max_try = sqrt(spot); // TODO replace function with uint64_t varent
     /* check against all the known prime numbers to see if it is prime or not */
     for (unsigned int j = 0; j < Prime_Numbers.size() && max_try >= Prime_Numbers[j]; j++)
     {
