@@ -59,20 +59,10 @@ int main()
     /* check if the number is prime */
     if (is_prime)
     {
-      /* log as prime */
-      cout << "Found prime: " << spot << endl;
       /* add to list of prime */
       Prime_Numbers.push_back(spot);
     }
-    /* if not prime */
-    else
-    {
-      /* and logging enabled */
-      if (log)
-      /* Print Found not prime */
-        cout << "Found not prime: " << spot << endl;
-      }
-      /* increase spot checking */
+    /* increase spot checking */
     spot++;
   }
   /* Create a second time to determine time taken */
@@ -80,7 +70,7 @@ int main()
 
   duration<double, std::milli> time_span = t2 - t1;
   /* Prints the time it took to the console */
-  cout << "Time difference: " << time_span.count() << " ms" << endl;
+  cout << "Time used: " << time_span.count() << " ms"<< endl;
   /* Crates a file stream */
   ofstream myfile;
   /* opens the file to write data to it */
@@ -89,13 +79,12 @@ int main()
   ofstream Uint_File;
   /* opens the file to write data to it */
   Uint_File.open("example.bin");
-  cout << "List of prime numbers: " << endl;
+  cout << "Writing prime numbers to files" << endl;
   /* for all of the numbers print to file */
   for (unsigned int j = 0; j < Prime_Numbers.size(); j++)
   {
-    cout << "prime:" << Prime_Numbers[j] << endl;
     /* Prints to the file */
-    myfile << Prime_Numbers[j] << endl;
+    myfile << Prime_Numbers[j] << '\n';
     Uint_File << (uint8_t)((Prime_Numbers[j])>>24);
     Uint_File << (uint8_t)((Prime_Numbers[j])>>16);
     Uint_File << (uint8_t)((Prime_Numbers[j])>>8);
