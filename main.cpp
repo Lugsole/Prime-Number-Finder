@@ -10,6 +10,7 @@
 #include <fstream>
 #include <chrono>
 #include <vector> 
+#undef DEBUG
 using namespace std;         // Including the C++ Standard Library.
 using namespace std::chrono; // Include chrono standard library
 
@@ -28,7 +29,6 @@ int main()
   Prime_Numbers.push_back(3);
   /* Set the last number tested */
   unsigned int spot = 4;
-  bool log = false;
 
   /* Get starting time to measure time taken */
   high_resolution_clock::time_point t1 = high_resolution_clock::now();
@@ -40,11 +40,13 @@ int main()
     /* Set the largest number to try the square root  */
     unsigned int max_try = sqrt(spot); // TODO replace function with uint64_t varent
     /* check against all the known prime numbers to see if it is prime or not */
-    for (unsigned int j = 0; j < Prime_Numbers.size() && max_try >= Prime_Numbers[j]; j++)
+    for (unsigned int j = 0; j < Prime_Numbers.size() && max_try >= Prime_Numbers[j]; ++j)
     {
+
       /* if we are logging then print what index we are testing against */
-      if (log)
-        cout << "letter j:" << j << endl;
+      #ifdef DEBUG
+        cout << "letter j:" << j << '=' << Prime_Numbers[j] << endl;
+      #endif
       /* Get the number to test against */
       unsigned int i = Prime_Numbers[j];
       unsigned int n = spot;
@@ -59,9 +61,21 @@ int main()
     /* check if the number is prime */
     if (is_prime)
     {
+      #ifdef DEBUG
+        /* log as prime */
+        cout << "Found prime: " << spot << endl;
+      #endif
       /* add to list of prime */
       Prime_Numbers.push_back(spot);
     }
+    #ifdef DEBUG
+    /* if not prime */
+    else
+    {
+      /* Print Found not prime */
+      cout << "Found not prime: " << spot << endl;
+    }
+    #endif
     /* increase spot checking */
     spot++;
   }
@@ -83,6 +97,9 @@ int main()
   /* for all of the numbers print to file */
   for (unsigned int j = 0; j < Prime_Numbers.size(); j++)
   {
+    #ifdef DEBUG
+      cout << "prime:" << Prime_Numbers[j] << endl;
+    #endif
     /* Prints to the file */
     myfile << Prime_Numbers[j] << '\n';
     Uint_File << (uint8_t)((Prime_Numbers[j])>>24);
