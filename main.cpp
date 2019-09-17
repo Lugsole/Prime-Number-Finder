@@ -114,8 +114,5 @@ int main()
   /* close the file and save the file */
   myfile.close();
   Uint_File.close();
-  /* Lets the window remain open */
-  cout << "Press enter to continue...";
-  getchar();
   return 0;
 }
