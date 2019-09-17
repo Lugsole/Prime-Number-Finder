@@ -6,10 +6,10 @@
  * Why: This was made for fun
  */
 #include <iostream>
-#include <math.h>
 #include <fstream>
 #include <chrono>
 #include <vector> 
+#include <climits>
 #undef DEBUG
 using namespace std;         // Including the C++ Standard Library.
 using namespace std::chrono; // Include chrono standard library
@@ -17,7 +17,7 @@ using namespace std::chrono; // Include chrono standard library
 int main()
 {
   /* Log out an explanation of the max it can do */
-  cout << "Max can find " << (unsigned long)pow((unsigned long)2,(unsigned long) 32) - 1 << endl;
+   cout << "Max can find " <<  UINT_MAX << endl;
   cout << "Finding primes version v3" << endl
        << "Input the maximum number it will test." << endl;
   unsigned int max_count;
@@ -29,6 +29,8 @@ int main()
   Prime_Numbers.push_back(3);
   /* Set the last number tested */
   unsigned int spot = 4;
+  unsigned int Max_Try = 2;
+  unsigned int Max_Try_Squared = 4;
 
   /* Get starting time to measure time taken */
   high_resolution_clock::time_point t1 = high_resolution_clock::now();
@@ -38,9 +40,12 @@ int main()
     /* Declare number as prime (change latter is not true) */
     bool is_prime = true;
     /* Set the largest number to try the square root  */
-    unsigned int max_try = sqrt(spot); // TODO replace function with uint64_t varent
+    if(Max_Try_Squared <= spot){
+      ++Max_Try;
+      Max_Try_Squared = Max_Try * Max_Try;
+    }
     /* check against all the known prime numbers to see if it is prime or not */
-    for (unsigned int j = 0; j < Prime_Numbers.size() && max_try >= Prime_Numbers[j]; ++j)
+    for (unsigned int j = 0; j < Prime_Numbers.size() && Max_Try >= Prime_Numbers[j]; ++j)
     {
 
       /* if we are logging then print what index we are testing against */
