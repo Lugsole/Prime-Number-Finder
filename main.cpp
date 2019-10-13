@@ -1,7 +1,7 @@
 /*
  * Created by: Lugsole
  * What: This is a prime finding function
- * When: 2017 - Curent
+ * When: 2017 - Current
  * Where: 
  * Why: This was made for fun
  */
